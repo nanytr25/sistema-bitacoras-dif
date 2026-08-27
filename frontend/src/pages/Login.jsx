@@ -9,13 +9,13 @@ function Login() {
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
-
+  const API_URL = import.meta.env.VITE_API_URL;
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
 
     try {
-      const res = await fetch("http://127.0.0.1:8000/api/token/", {
+      const res = await fetch(`${API_URL}/token/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -31,7 +31,7 @@ function Login() {
       if (data.access) {
         localStorage.setItem("token", data.access);
 
-        const perfilRes = await fetch("http://127.0.0.1:8000/api/perfil/", {
+        const perfilRes = await fetch(`${API_URL}/perfil/`, {
           headers: {
             Authorization: `Bearer ${data.access}`,
           },

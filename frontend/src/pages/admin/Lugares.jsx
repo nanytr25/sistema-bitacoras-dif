@@ -4,7 +4,7 @@ import { Search, LogOut, MapPin, CheckCircle2, Pencil, Trash2, ChevronLeft, Chev
 
 import AdminLayout from "../../layouts/AdminLayout";
 
-const API_URL = "http://127.0.0.1:8000/api";
+const API_URL = import.meta.env.VITE_API_URL;
 const POR_PAGINA = 5;
 
 const CATEGORIAS = ["Oficina", "Sede", "Centro", "Módulo"];

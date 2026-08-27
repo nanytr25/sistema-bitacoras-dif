@@ -10,7 +10,7 @@ import MensajeExito from "../../components/usuario/MensajeExito";
 import ModalEliminar from "../../components/usuario/ModalEliminar";
 
 const obtenerIdOficio = (oficio) => oficio?.id_oficio ?? oficio?.id;
-
+const API_URL = import.meta.env.VITE_API_URL;
 const formatearFecha = (fechaStr) => {
   if (!fechaStr) return "___ de _________ de 2026";
   const fecha = new Date(fechaStr.includes("T") ? fechaStr : fechaStr + "T00:00:00");
@@ -170,7 +170,7 @@ function OficioComision() {
         return;
       }
 
-      const response = await fetch("http://127.0.0.1:8000/api/oficios/", {
+      const response = await fetch(`${API_URL}oficios/`, {
         method: "GET",
         headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
       });
@@ -238,7 +238,7 @@ function OficioComision() {
 
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(`http://127.0.0.1:8000/api/oficios/${id}/`, {
+      const response = await fetch(`${API_URL}/oficios/${id}/`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });

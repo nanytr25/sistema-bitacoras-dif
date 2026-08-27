@@ -10,7 +10,7 @@ import SubirFotos from "../../components/usuario/SubirFotos";
 import ListaFotos from "../../components/usuario/ListaFotos";
 import DetalleEvidencia from "../../components/usuario/DetalleEvidencia";
 
-const API_URL = "http://127.0.0.1:8000/api";
+const API_URL = import.meta.env.VITE_API_URL;
 
 // =========================================
 // UTILIDADES

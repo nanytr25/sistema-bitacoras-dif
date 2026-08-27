@@ -4,7 +4,7 @@ import { Search, Filter, Download, Eye, X, ImageOff, Images, FileText, ChevronLe
 
 import AdminLayout from "../../layouts/AdminLayout";
 
-const API_URL = "http://127.0.0.1:8000/api";
+const API_URL = import.meta.env.VITE_API_URL;
 const POR_PAGINA = 6;
 
 function EvidenciaReportes() {

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { FileText, ClipboardList, Image, Users, UserCircle, ChevronDown, LocationEditIcon } from "lucide-react";
 
-const API_URL = "http://127.0.0.1:8000/api";
+const API_URL = import.meta.env.VITE_API_URL;
 
 function SidebarAdmin() {
   const navigate = useNavigate();

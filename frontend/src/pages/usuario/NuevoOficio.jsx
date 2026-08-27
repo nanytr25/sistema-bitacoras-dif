@@ -4,6 +4,8 @@ import { FileText, Save } from "lucide-react";
 
 import UsuarioLayout from "../../layouts/UsuarioLayout";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 function NuevoOficio() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -83,7 +85,7 @@ function NuevoOficio() {
   const obtenerLugares = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://127.0.0.1:8000/api/lugares/", {
+      const response = await fetch(`${API_URL}/lugares/`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -110,7 +112,7 @@ function NuevoOficio() {
   const obtenerAdministradores = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://127.0.0.1:8000/api/administradores/", {
+      const response = await fetch(`${API_URL}/administradores/`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -137,7 +139,7 @@ function NuevoOficio() {
   const obtenerPerfil = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://127.0.0.1:8000/api/perfil/", {
+      const response = await fetch(`${API_URL}/perfil/`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -164,7 +166,7 @@ function NuevoOficio() {
   const obtenerOficio = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(`http://127.0.0.1:8000/api/oficios/${id}/`, {
+      const response = await fetch(`${API_URL}/oficios/${id}/`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -242,8 +244,8 @@ function NuevoOficio() {
       };
 
       const url = modoEdicion
-        ? `http://127.0.0.1:8000/api/oficios/${id}/`
-        : "http://127.0.0.1:8000/api/oficios/";
+        ? `${API_URL}/oficios/${id}/`
+        : `${API_URL}/oficios/`;
 
       const response = await fetch(url, {
         method: modoEdicion ? "PUT" : "POST",

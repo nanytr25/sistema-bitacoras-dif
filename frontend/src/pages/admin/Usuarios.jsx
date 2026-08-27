@@ -4,7 +4,7 @@ import { Search, Filter, UserPlus, User, Mail, AtSign, ShieldCheck, Pencil, Powe
 
 import AdminLayout from "../../layouts/AdminLayout";
 
-const API_URL = "http://127.0.0.1:8000/api";
+const API_URL = import.meta.env.VITE_API_URL;
 const POR_PAGINA = 5;
 
 const ROLES = ["Administrador", "Capturista"];
