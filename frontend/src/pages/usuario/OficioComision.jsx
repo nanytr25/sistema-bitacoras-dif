@@ -170,7 +170,7 @@ function OficioComision() {
         return;
       }
 
-      const response = await fetch(`${API_URL}oficios/`, {
+      const response = await fetch(`${API_URL}/oficios/`, {
         method: "GET",
         headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
       });
