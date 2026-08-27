@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { FileText, ClipboardList, Image, Folder, UserCircle, ChevronDown } from "lucide-react";
+import { FileText, ClipboardList, Image, UserCircle, ChevronDown } from "lucide-react";
 
 const API_URL = "http://127.0.0.1:8000/api";
 
@@ -17,9 +17,6 @@ function SidebarUsuario() {
     window.location.replace("/");
   };
 
-  useEffect(() => {
-    obtenerPerfil();
-  }, []);
 
   const obtenerPerfil = async () => {
     try {
@@ -38,6 +35,9 @@ function SidebarUsuario() {
       console.error("Error al obtener perfil:", error);
     }
   };
+  useEffect(() => {
+    obtenerPerfil();
+  }, []);
 
   const menuItems = [
     { to: "/usuario/oficio-comision", label: "Oficio Comisión", icon: FileText },

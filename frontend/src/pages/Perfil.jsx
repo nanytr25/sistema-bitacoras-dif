@@ -23,14 +23,6 @@ function Perfil({ Layout = UsuarioLayout }) {
   const [errorPassword, setErrorPassword] = useState("");
   const [exitoPassword, setExitoPassword] = useState("");
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      navigate("/");
-      return;
-    }
-    obtenerPerfil();
-  }, []);
 
   const obtenerPerfil = async () => {
     try {
@@ -61,6 +53,14 @@ function Perfil({ Layout = UsuarioLayout }) {
       setCargando(false);
     }
   };
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/");
+      return;
+    }
+    obtenerPerfil();
+  }, []);
 
   const abrirModal = () => {
     setPasswordActual("");

@@ -151,24 +151,7 @@ function Evidencias() {
   // REFS DE LAS HOJAS OCULTAS PARA GENERAR EL PDF
   const paginasRefs = useRef({});
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      navigate("/");
-      return;
-    }
-    obtenerOficios();
-  }, []);
 
-  useEffect(() => {
-    if (oficioSeleccionado) {
-      obtenerFotos(oficioSeleccionado);
-      setFotoSeleccionada(null);
-    } else {
-      setFotos([]);
-      setFotoSeleccionada(null);
-    }
-  }, [oficioSeleccionado]);
 
   // OBTENER OFICIOS
   const obtenerOficios = async () => {
@@ -230,7 +213,24 @@ function Evidencias() {
       setFotos([]);
     }
   };
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/");
+      return;
+    }
+    obtenerOficios();
+  }, []);
 
+  useEffect(() => {
+    if (oficioSeleccionado) {
+      obtenerFotos(oficioSeleccionado);
+      setFotoSeleccionada(null);
+    } else {
+      setFotos([]);
+      setFotoSeleccionada(null);
+    }
+  }, [oficioSeleccionado]);
   // SUBIR FOTO
   const subirFoto = async (archivo) => {
     if (!oficioSeleccionado) {

@@ -159,20 +159,6 @@ function OficioComision() {
   const [oficioDescarga, setOficioDescarga] = useState(null);
   const [generandoPDF, setGenerandoPDF] = useState(false);
 
-  useEffect(() => {
-    obtenerOficios();
-  }, []);
-
-  useEffect(() => {
-    const manejarTeclaEscape = (e) => {
-      if (e.key === "Escape" && oficioVista) {
-        cerrarVistaPrevia();
-      }
-    };
-    window.addEventListener("keydown", manejarTeclaEscape);
-    return () => window.removeEventListener("keydown", manejarTeclaEscape);
-  }, [oficioVista]);
-
   const obtenerOficios = async () => {
     try {
       setCargando(true);
@@ -233,7 +219,19 @@ function OficioComision() {
 
   const eliminarOficio = (oficio) => setOficioSeleccionado(oficio);
   const cancelarEliminar = () => setOficioSeleccionado(null);
+  useEffect(() => {
+    obtenerOficios();
+  }, []);
 
+  useEffect(() => {
+    const manejarTeclaEscape = (e) => {
+      if (e.key === "Escape" && oficioVista) {
+        cerrarVistaPrevia();
+      }
+    };
+    window.addEventListener("keydown", manejarTeclaEscape);
+    return () => window.removeEventListener("keydown", manejarTeclaEscape);
+  }, [oficioVista]);
   const confirmarEliminar = async () => {
     if (!oficioSeleccionado) return;
     const id = obtenerIdOficio(oficioSeleccionado);

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { FileText, ClipboardList, Image, Users, UserCircle, ChevronDown, UsbIcon, LocateIcon, LocateOffIcon, LocationEditIcon } from "lucide-react";
+import { FileText, ClipboardList, Image, Users, UserCircle, ChevronDown, LocationEditIcon } from "lucide-react";
 
 const API_URL = "http://127.0.0.1:8000/api";
 
@@ -17,9 +17,7 @@ function SidebarAdmin() {
     window.location.replace("/");
   };
 
-  useEffect(() => {
-    obtenerPerfil();
-  }, []);
+
 
   const obtenerPerfil = async () => {
     try {
@@ -38,7 +36,9 @@ function SidebarAdmin() {
       console.error("Error al obtener perfil:", error);
     }
   };
-
+  useEffect(() => {
+    obtenerPerfil();
+  }, []);
   const menuItems = [
     { to: "/admin/aprobaciones-oficios", label: "Oficio Comisión", icon: FileText },
     { to: "/admin/reportes-pasaje", label: "Bitácora pasaje", icon: ClipboardList },

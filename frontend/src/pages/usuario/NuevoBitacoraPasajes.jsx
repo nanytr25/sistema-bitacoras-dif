@@ -5,7 +5,6 @@ import {
   Plus,
   Trash2,
   FileText,
-  ArrowLeft,
   MapPin,
 } from "lucide-react";
 
@@ -23,8 +22,8 @@ function NuevoBitacoraPasajes() {
   const [fecha, setFecha] = useState("");
   const [destinos, setDestinos] = useState([]);
   const [administradores, setAdministradores] = useState([]);
-  const [cargando, setCargando] = useState(false);
   const [guardando, setGuardando] = useState(false);
+  const [cargando, setCargando] = useState(false);
   const [error, setError] = useState("");
   const [origen] = useState(ORIGEN_FIJO);
   const [origenId, setOrigenId] = useState("");
@@ -44,17 +43,6 @@ function NuevoBitacoraPasajes() {
     ]);
   }, []);
 
-  // CARGAR DATOS DESDE DJANGO (cada fetch independiente, uno no bloquea a los otros)
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      navigate("/");
-      return;
-    }
-    obtenerPerfil();
-    obtenerLugares();
-    obtenerAdministradores();
-  }, []);
 
   const obtenerPerfil = async () => {
     try {
@@ -141,6 +129,17 @@ function NuevoBitacoraPasajes() {
       setAdministradores([]);
     }
   };
+  // CARGAR DATOS DESDE DJANGO (cada fetch independiente, uno no bloquea a los otros)
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/");
+      return;
+    }
+    obtenerPerfil();
+    obtenerLugares();
+    obtenerAdministradores();
+  }, []);
 
   // AGREGAR VIAJE
   const agregarViaje = () => {

@@ -38,19 +38,6 @@ function NuevoOficio() {
     setFormulario((prev) => ({ ...prev, [campo]: valor }));
   };
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      navigate("/");
-      return;
-    }
-    inicializar();
-  }, [id]);
-
-  // Carga lugares, administradores y (si es edición) el oficio en paralelo.
-  // Al final combina todo para precargar el formulario, así el <select>
-  // de "Lugar de Destino" ya tiene la lista disponible sin importar el
-  // orden en que respondan las peticiones.
   const inicializar = async () => {
     try {
       setCargando(true);
@@ -196,7 +183,14 @@ function NuevoOficio() {
       return null;
     }
   };
-
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/");
+      return;
+    }
+    inicializar();
+  }, [id]);
   const seleccionarAdministrador = (idAdmin) => {
     const admin = administradores.find((a) => String(a.id) === String(idAdmin));
     if (admin) {

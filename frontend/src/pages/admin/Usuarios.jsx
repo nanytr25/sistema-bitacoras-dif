@@ -1,26 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  Search,
-  Filter,
-  UserPlus,
-  User,
-  Mail,
-  AtSign,
-  ShieldCheck,
-  Pencil,
-  Power,
-  Trash2,
-  MoreVertical,
-  ChevronLeft,
-  ChevronRight,
-  Users,
-  LogOut,
-  KeyRound,
-  Copy,
-  Check,
-  X,
-} from "lucide-react";
+import { Search, Filter, UserPlus, User, Mail, AtSign, ShieldCheck, Pencil, Power, Trash2, ChevronLeft, ChevronRight, Users, LogOut, KeyRound, Copy, Check, X,} from "lucide-react";
 
 import AdminLayout from "../../layouts/AdminLayout";
 
@@ -84,15 +64,6 @@ function Usuarios() {
   const [nombreNuevoUsuario, setNombreNuevoUsuario] = useState("");
   const [copiado, setCopiado] = useState(false);
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      navigate("/");
-      return;
-    }
-    obtenerUsuarios();
-  }, []);
-
   const obtenerUsuarios = async () => {
     try {
       setCargando(true);
@@ -123,7 +94,14 @@ function Usuarios() {
       setCargando(false);
     }
   };
-
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/");
+      return;
+    }
+    obtenerUsuarios();
+  }, []);
   const guardarUsuario = async () => {
     if (!form.nombre_completo || !form.correo || !form.username || !form.cargo || !form.rol) {
       setError("Completa todos los campos obligatorios.");
@@ -288,10 +266,6 @@ function Usuarios() {
     setUsuarioEditandoId(usuario.id_usuario);
     setError("");
     setMostrarFormulario(true);
-  };
-
-  const opcionesUsuario = (usuario) => {
-    console.log("Más opciones:", usuario);
   };
 
   // NORMALIZAR CAMPOS (con fallbacks según variantes del backend)

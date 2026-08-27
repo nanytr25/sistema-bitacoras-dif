@@ -6,14 +6,7 @@ const API_URL = "http://127.0.0.1:8000/api";
 function Dashboard() {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      navigate("/", { replace: true });
-      return;
-    }
-    verificarYRedirigir();
-  }, []);
+
 
   const verificarYRedirigir = async () => {
     try {
@@ -58,7 +51,14 @@ function Dashboard() {
       navigate("/", { replace: true });
     }
   };
-
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/", { replace: true });
+      return;
+    }
+    verificarYRedirigir();
+  }, []);
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">
       <div className="text-center">

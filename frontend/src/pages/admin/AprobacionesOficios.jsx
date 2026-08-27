@@ -1,19 +1,6 @@
 import { useEffect, useRef, useState, forwardRef } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  Search,
-  Filter,
-  Download,
-  Eye,
-  CheckCircle2,
-  XCircle,
-  Clock3,
-  ChevronLeft,
-  ChevronRight,
-  FileText,
-  X,
-  Printer,
-} from "lucide-react";
+import { Search, Filter, Download, Eye, CheckCircle2, XCircle, Clock3, ChevronLeft, ChevronRight, FileText, X, Printer,} from "lucide-react";
 import html2canvas from "html2canvas-pro";
 import jsPDF from "jspdf";
 
@@ -160,25 +147,7 @@ function AprobacionesOficios() {
   const [oficioDescarga, setOficioDescarga] = useState(null);
   const [generandoPDF, setGenerandoPDF] = useState(false);
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      navigate("/");
-      return;
-    }
-    obtenerOficios();
-  }, []);
-
-  useEffect(() => {
-    const manejarTeclaEscape = (e) => {
-      if (e.key === "Escape" && oficioVista) {
-        cerrarVistaPrevia();
-      }
-    };
-    window.addEventListener("keydown", manejarTeclaEscape);
-    return () => window.removeEventListener("keydown", manejarTeclaEscape);
-  }, [oficioVista]);
-
+  
   const obtenerOficios = async () => {
     try {
       setCargando(true);
@@ -209,6 +178,15 @@ function AprobacionesOficios() {
       setCargando(false);
     }
   };
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/");
+      return;
+    }
+    obtenerOficios();
+  }, []);
+
 
   const cambiarEstado = async (oficio, nuevoEstado) => {
     try {
@@ -249,6 +227,15 @@ function AprobacionesOficios() {
   };
 
   const cerrarVistaPrevia = () => setOficioVista(null);
+  useEffect(() => {
+    const manejarTeclaEscape = (e) => {
+      if (e.key === "Escape" && oficioVista) {
+        cerrarVistaPrevia();
+      }
+    };
+    window.addEventListener("keydown", manejarTeclaEscape);
+    return () => window.removeEventListener("keydown", manejarTeclaEscape);
+  }, [oficioVista]);
 
   const esperarImagenes = (nodo) => {
     const imagenes = Array.from(nodo.querySelectorAll("img"));

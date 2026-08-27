@@ -7,7 +7,6 @@ import jsPDF from "jspdf";
 import UsuarioLayout from "../../layouts/UsuarioLayout";
 import TablaBitacoraPasajes from "../../components/usuario/TablaBitacoraPasajes";
 import MensajeExito from "../../components/usuario/MensajeExito";
-import ModalEliminar from "../../components/usuario/ModalEliminar";
 
 const API_URL = "http://127.0.0.1:8000/api";
 const ORIGEN_FIJO = "SMDIF, Sanctorum de Lázaro Cárdenas";
@@ -365,7 +364,6 @@ function BitacoraPasajes() {
   const [administradores, setAdministradores] = useState([]);
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState("");
-  const [bitacoraSeleccionada, setBitacoraSeleccionada] = useState(null);
   const [mostrarMensaje, setMostrarMensaje] = useState(
     Boolean(location.state?.mensaje)
   );
@@ -379,12 +377,6 @@ function BitacoraPasajes() {
   // =========================================
   // OBTENER DATOS DESDE DJANGO
   // =========================================
-
-  useEffect(() => {
-    obtenerBitacoras();
-    obtenerLugares();
-    obtenerAdministradores();
-  }, []);
 
   const obtenerBitacoras = async () => {
     try {
@@ -467,7 +459,11 @@ function BitacoraPasajes() {
       console.error("Error al obtener administradores:", err);
     }
   };
-
+  useEffect(() => {
+    obtenerBitacoras();
+    obtenerLugares();
+    obtenerAdministradores();
+  }, []);
   // MAPAS id → datos
   const lugaresPorId = lugares.reduce((mapa, l) => {
     mapa[l.id_lugar] = l.nombre;

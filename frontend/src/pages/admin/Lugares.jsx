@@ -1,16 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  Search,
-  LogOut,
-  MapPin,
-  CheckCircle2,
-  Pencil,
-  Trash2,
-  ChevronLeft,
-  ChevronRight,
-  Building2,
-} from "lucide-react";
+import { Search, LogOut, MapPin, CheckCircle2, Pencil, Trash2, ChevronLeft, ChevronRight, Building2,} from "lucide-react";
 
 import AdminLayout from "../../layouts/AdminLayout";
 
@@ -39,15 +29,6 @@ function Lugares() {
   const [editandoId, setEditandoId] = useState(null);
   const [guardando, setGuardando] = useState(false);
   const [form, setForm] = useState(FORM_INICIAL);
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      navigate("/");
-      return;
-    }
-    obtenerLugares();
-  }, []);
 
   const obtenerLugares = async () => {
     try {
@@ -79,7 +60,14 @@ function Lugares() {
       setCargando(false);
     }
   };
-
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/");
+      return;
+    }
+    obtenerLugares();
+  }, []);
   const registrarOEditarLugar = async () => {
     if (!form.nombre || !form.ubicacion || !form.categoria) {
       setError("Completa todos los campos obligatorios.");

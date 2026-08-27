@@ -1,18 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  Search,
-  Filter,
-  Download,
-  Eye,
-  X,
-  ImageOff,
-  Images,
-  FileText,
-  ChevronLeft,
-  ChevronRight,
-  ArrowLeft,
-} from "lucide-react";
+import { Search, Filter, Download, Eye, X, ImageOff, Images, FileText, ChevronLeft, ChevronRight, ArrowLeft,} from "lucide-react";
 
 import AdminLayout from "../../layouts/AdminLayout";
 
@@ -34,15 +22,6 @@ function EvidenciaReportes() {
   const [fotos, setFotos] = useState([]);
   const [cargandoFotos, setCargandoFotos] = useState(false);
   const [fotoAmpliada, setFotoAmpliada] = useState(null);
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      navigate("/");
-      return;
-    }
-    obtenerOficios();
-  }, []);
 
   // OBTENER OFICIOS
   const obtenerOficios = async () => {
@@ -75,6 +54,14 @@ function EvidenciaReportes() {
       setCargando(false);
     }
   };
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/");
+      return;
+    }
+    obtenerOficios();
+  }, []);
 
   // OBTENER EVIDENCIAS DE UN OFICIO
   const obtenerFotos = async (idOficio) => {

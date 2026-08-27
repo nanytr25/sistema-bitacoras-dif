@@ -27,15 +27,6 @@ function ReportesPasaje() {
   const [pagina, setPagina] = useState(1);
   const [procesando, setProcesando] = useState(null);
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      navigate("/");
-      return;
-    }
-    obtenerBitacoras();
-  }, []);
-
   const obtenerBitacoras = async () => {
     try {
       setCargando(true);
@@ -66,6 +57,15 @@ function ReportesPasaje() {
       setCargando(false);
     }
   };
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/");
+      return;
+    }
+    obtenerBitacoras();
+  }, []);
+
 
   const cambiarEstado = async (item, nuevoEstado) => {
     try {
