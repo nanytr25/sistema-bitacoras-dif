@@ -40,16 +40,13 @@ function Login() {
         const perfil = await perfilRes.json();
         console.log("RESPUESTA DE PERFIL DE LA API:", perfil);
 
-        // Convierte los roles a texto en minúsculas (soporta si vienen como strings o como objetos)
-        const roles = (perfil.roles || []).map((r) =>
-          (typeof r === "string" ? r : r.nombre || r.name || r.role || "").toLowerCase()
-        );
+        // Lee el rol único del perfil (Administrador o Capturista)
+        const rolUsuario = (perfil.rol || "").toLowerCase();
 
-        console.log("ROLES PROCESADOS:", roles);
+        console.log("ROL PROCESADO:", rolUsuario);
 
-        // Verifica si incluye variantes de administrador o capturista
-        const esAdmin = roles.some((r) => r.includes("admin") || r.includes("administrador"));
-        const esCapturista = roles.some((r) => r.includes("capturista"));
+        const esAdmin = rolUsuario.includes("admin");
+        const esCapturista = rolUsuario.includes("capturista");
 
         if (esAdmin) {
           console.log("Redirigiendo a Aprobaciones (Admin)");
